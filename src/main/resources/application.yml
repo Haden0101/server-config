@@ -1,0 +1,49 @@
+server:
+  port: 8777
+
+application:
+  name: user-app
+  description: Proyecto User
+  version: v0.0.1-SNAPSHOT
+  inceptionYear: 2023
+
+spring:
+  application.name: ${application.name}
+  r2dbc:
+    url: r2dbc:postgresql://dev-keola.c9wtj3kphyjm.us-east-1.rds.amazonaws.com:5432/user
+    username: postgres
+    password: UmXSsRsHGwQ26Ixx7h
+  h2.console:
+    enabled: true
+    settings:
+      trace: true
+      web-allow-others: true
+  # Configuracion de Pool de conexiones
+  datasource:
+    hikari:
+      maximum-pool-size: 5
+      idle-timeout: 60000
+      connection-timeout: 30000
+
+springdoc:
+  swagger-ui:
+    use-root-path: true
+
+api:
+  image: http://internal-dev-lb-240657713.us-east-1.elb.amazonaws.com:8090
+  common: http://internal-dev-lb-240657713.us-east-1.elb.amazonaws.com:8091
+  order: http://internal-dev-lb-240657713.us-east-1.elb.amazonaws.com:9000
+  back: https://servicios.inclubtest.online:2053
+  lotery: http://internal-dev-lb-240657713.us-east-1.elb.amazonaws.com:8096
+
+url:
+  image:
+    view: https://s3.amazonaws.com/keola.dev.imagen/
+
+keola:
+  jwt:
+    key: 43D270AB908206F66253EF8DD27DCF37
+    secret: JaNdRgUkXp2r5u8xJaNdRgUkXp2r5u8xxJaNdRgUkXp2r5u8xxJaNdRgUkXp2r5u8xxJaNdRgUkXp2r5u8xxJaNdRgUkXp2r5u8xxJaNdRgUkXp2r5u8xxJaNdRgUkXp2r5u8xxJaNdRgUkXp2r5u8xxJaNdRgUkXp2r5u8xxJaNdRgUkXp2r5u8xxJaNdRgUkXp2r5u8xxJaNdRgUkXp2r5u8xxJaNdRgUkXp2r5u8xxJaNdRgUkXp2r5u8xxJaNdRgUkXp2r5u8x
+    subject: keola.club
+    expirationMs: 86400000
+    header-authorization: 'authorizationToken'
